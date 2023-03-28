@@ -1,21 +1,55 @@
-<h1>ブログ一覧</h1>
+<!DOCTYPE html>
+<html lang="ja">
 
-<p><%= notice %></p>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>つぶやき</title>
+  <link rel="stylesheet" href="../../assets/stylesheets/normalize.css">
+  <link rel="stylesheet" href="../../assets/stylesheets/index.css">
+</head>
 
-<table>
-  <tr>
-    <th>タイトル</th>
-    <th>内容</th>
-  </tr>
+<body>
+  <header>
+    <ul class="header clearfix">
+      <div class="menu"> 
+        <li class><a href="#">ログイン</a></li>
+        <li class><a href="#">サインアップ</a></li>
+        <li class><a href="#">お問い合わせ</a></li>
+      </div>
+    </ul>
+  </header>
 
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= post.content %></td>
-    <td><%= link_to '詳細を確認する', post_path(post.id) %></td>
-    <td><%= link_to "ブログを編集する", edit_post_path(post.id), data: { confirm: '本当に編集していいですか？' } %></td>
-    <td><%= link_to 'ブログを削除する', post_path(post.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
-  </tr>
-<% end %>
-</table>
+  <section class="main-header">
+    <h1>つぶやき</h1>
+  </section>
 
-<%= link_to '新しくブログを投稿する', new_post_path %>
+  <p><%= notice %></p>
+
+  <table>
+    <tr>
+      <th>内容</th>
+    </tr>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.content %></td>
+          <td><%= link_to '詳細', post_path(post.id) %></td>
+          <td><%= link_to "編集", edit_post_path(post.id), data: { confirm: '本当に編集していいですか？' } %></td>
+          <td><%= link_to '削除', post_path(post.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+        </tr>
+      <% end %>
+  </table>
+
+  <section class="new">
+    <%= link_to 'つぶやく', new_post_path %>
+  </section>
+
+  <footer>
+    <div class="footer">
+      <p>運営会社DIVE INTO CODE株式会社</p>
+      <p>© 2015-2018 Copyright DIVE INTO CODE Corp.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
